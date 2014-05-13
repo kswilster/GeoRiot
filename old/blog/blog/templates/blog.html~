@@ -1,0 +1,53 @@
+{% load staticfiles %}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'blog/css/bootstrap.css' %}">
+  <title>Blog! (logged in)</title>
+</head>
+
+<body>
+<h1>Create your own blog!</h1>
+
+{% if form.errors %}
+<p style='color:red">
+Incorret user name and password
+</p>
+{% endif %}
+
+<div class="table">
+   
+  <form action="{% url 'django.contrib.auth.views.login' %}" method="post">
+          {{ form.username.label_tag }}
+     <div class="table-row">
+        <div class="table-cell">
+        </div>
+
+        <div class="table-cell">
+          {{ form.username }}
+        </div>
+     </div>
+     <div class="table-row">
+        <div class="table-cell">
+          {{ form.password.label_tag }}
+        </div>
+        <div class="table-cell">
+          {{ form.password.label }}
+        </div>
+     </div>
+     <div class="table-row">
+        <div class="table-cell">
+          <input type="submit" value="login" />
+        </div>
+  </form>
+
+        <div class="table-cell">
+          <a href="/blog/register">Register</a>
+        </div>
+     </div>
+</div>
+</body>
+</html>
+

@@ -1,0 +1,68 @@
+{% load staticfiles %}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'blog/css/bootstrap.css' %}">
+  <title>Registration Page!</title>
+</head>
+
+<body>
+<h1>Register!</h1>
+
+{% for error in errors %}
+<p style="color: red">
+{{ error }}
+</p>
+{% endfor %}
+
+<div class="table">
+   
+  <form action="register" method="post">
+     <div class="table-row">
+        <div class="table-cell">
+          Username:
+        </div>
+        <div class="table-cell">
+          <input type="text" name="username">
+        </div>
+     </div>
+
+     <div class="table-row">
+        <div class="table-cell">
+          Email:
+        </div>
+        <div class="table-cell">
+          <input type="text" name="email">
+        </div>
+     </div>
+
+     <div class="table-row">
+        <div class="table-cell">
+          Password:
+        </div>
+        <div class="table-cell">
+          <input type="password" name="password1">
+        </div>
+     </div>
+
+     <div class="table-row">
+        <div class="table-cell">
+          Confirmation:
+        </div>
+        <div class="table-cell">
+          <input type="password" name="password2">
+        </div>
+     </div>
+     <div class="table-row">
+        <div class="table-cell">
+          <input type="submit" value="register" />
+        </div>
+  {% csrf_token %}
+  </form>
+     </div>
+</div>
+</body>
+</html>
+

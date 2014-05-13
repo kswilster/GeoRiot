@@ -1,0 +1,10 @@
+<register>
+	<visible_fields>{% for field in register.visible_fields %}
+  		<label_tag>{{field.label_tag}}</label_tag>
+  		<field>{{field}}</field>
+  		<errors>{{field.errors}}</errors>
+	{% endfor %}</visible_fields>
+	<hidden_fields>{% for field in register.hidden_fields %}
+		<field>{{field}}</field>
+	{% endfor %}</hidden_fields>
+</register>

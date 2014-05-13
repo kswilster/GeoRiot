@@ -1,0 +1,58 @@
+<!-- {% load staticfiles %}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="{% static 'blog/css/bootstrap.css' %}">
+  <title>Registration Page!</title>
+</head>
+
+<body>
+<h1>Register!</h1>
+
+{% for error in errors %}
+<p style="color: red">
+{{ error }}
+</p>
+{% endfor %}
+
+<div class="table">
+   
+<form method="post" action="{% url 'register' %}">
+<table>
+{% for field in form.visible_fields %}
+<tr>
+  <td>{{field.label_tag}}:</td>
+  <td>{{field}}</td>
+  <td style="color: red">{{field.errors}}</td>
+</tr>
+{% endfor %}
+</table>
+{% for field in form.hidden_fields %}
+{{field}}
+{% endfor %}
+{% csrf_token %}
+<input type="submit" value="Register" />
+</form>
+     </div>
+</div>
+</body>
+</html>
+
+-->
+
+<div id="register">
+	<table>
+      {% for field in register.visible_fields %}
+        <tr>
+          <td>{{field.label_tag}}:</td>
+          <td>{{field}}</td>
+          <td style="color: red">{{field.errors}}</td>
+        </tr>
+      {% endfor %}
+    </table>
+    {% for field in register.hidden_fields %}
+      {{field}}
+    {% endfor %}
+</div>

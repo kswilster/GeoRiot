@@ -1,0 +1,25 @@
+<users>
+  <user>
+    <username>{{user.user}}</username>
+    <street>{{user.street}}</street>
+    <city>{{user.city}}</city>
+    <state>{{user.state}}</state>
+    <zipcode>{{user.zipcode}}</zipcode>
+    <location>{{user.street}} {{user.city}}, {{user.state}} {{user.zipcode}}</location>
+  </user>
+{% if rsvps %}
+{% for rsvp in rsvps %}
+  <rsvp>
+    <event>{{event.title}}</event>
+    <event_id>{{rsvp.event.id}}</event_id>
+    <status>{{rsvp.rsvp_choice}}</status>
+  </rsvp>
+{% endfor %}
+{% elif rsvp %}
+  <rsvp>
+    <event>{{event.title}}</event>
+    <event_id>{{rsvp.event.id}}</event_id>
+    <status>{{rsvp.get_rsvp_choice_display}}</status>
+  </rsvp>
+{% endif %}
+</users>

@@ -1,0 +1,9 @@
+<users> {% for user in followusers %}
+  <user>
+    <username>{{user.username}}</username>
+  </user> {% endfor %}
+{% for user in followusers %}
+  <followuser> 
+     <username>{{user}}</username>
+  </followuser>{% endfor %}
+</users>

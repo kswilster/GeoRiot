@@ -1,0 +1,19 @@
+<events> {% for event in events %}
+  <event>
+    <title>{{event.title}}</title>
+    <id>{{event.id}}</id>
+    <username>{{event.user}}</username>
+    <description>{{event.description}} </description>
+    {% if event.picture %}
+    <picture>/blog/photo/{{event.id}}</picture>
+    {% endif %}
+    <datetime_start>{{event.datetime_start|date:"d M Y"}}, {{event.datetime_start|time:"I:i A"}}</datetime_start>
+    <datetime_end>{{event.datetime_end|date:"d M Y"}}, {{event.datetime_end|time:"O:i A"}}</datetime_end>
+    <street>{{event.street}}</street>
+    <city>{{event.city}}</city>
+    <state>{{event.state}}</state>
+    <zipcode>{{event.zipcode}}</zipcode>
+    <location>{{event.street}} {{event.city}}, {{event.state}} {{event.zipcode}}</location>
+  </event>
+{% endfor %}
+</events>

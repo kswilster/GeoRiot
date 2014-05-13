@@ -1,0 +1,66 @@
+{% load staticfiles %}
+
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Blog Posts!</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'blog/css/bootstrap.css' %}">
+</head>
+
+<body>
+{% for error in errors %}
+<p style="color:red">
+{{error}}
+</p>
+{% endfor %}
+
+<p>
+
+</p>
+
+<p>
+<h2>
+Users:
+</h2>
+
+{% for user in users %}
+  <h4>
+    {{ user.user }}
+  </h4>
+{% endfor %}
+</p>
+
+<p>
+<h2>
+Blogposts:
+</h2>
+<ul>
+{% for post in blogposts %}
+  <li>
+    <h3>
+      {{post.title}}
+    </h3>
+    <h4>
+      by: {{post.user}} <br>
+      {{post.datetime}}
+    </h4>
+
+    {% if post.picture %}
+      <img src="{% url 'photo' post.id %}" alt="{{post.title}}" width="200px">
+      <br>
+    {% endif %} 
+    {{post.blogpost}}
+  </li>
+  <br>
+{% endfor %}
+</ul>
+</p>
+
+<p>
+<a href="{% url 'login' %}" >Logout</a>
+</p>
+
+</body>
+</html>
+

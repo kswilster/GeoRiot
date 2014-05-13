@@ -1,0 +1,100 @@
+{% load staticfiles %}
+
+<!DOCTYPE HTML>
+<html style="height:80%; width:90%">
+<head>
+  <meta charset="utf-8">
+  <title>Blog Posts!</title>
+  <link rel="stylesheet" type="text/css" href="{% static 'blog/css/bootstrap.css' %}">
+  <script type="text/javascript">
+    var user_authenticated = "{{user.is_authenticated}}"
+    var username = "{{user}}"
+  </script>
+  <script src="{% static 'blog/js/jquery-2.1.0.min.js' %}" type="text/javascript"></script>
+  <script type="text/javascript"
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCv3e7_0c7VMm1w31BHHAEUwslRW2MWakg&sensor=false">
+  </script>
+  <script type="text/javascript" src="http://api.evdb.com/js/api"></script>
+
+  <script src="{% static 'blog/js/blog.js' %}" type="text/javascript"></script>
+  <script src="{% static 'blog/js/gmap.js' %}" type="text/javascript"></script>
+</head>
+
+<body style="height:100%">
+
+<h1> Events! </h1>
+
+<div class="row" style="height:100%">
+<div class="col-md-3" >
+{% if users %}
+<h2>
+Users:
+</h2>
+
+<form action="{% url 'home' %}" method="post">
+<h4 id="userlist">
+{% for u in users %}
+{% if user != u.username %}
+<div>
+{% if u.username == fol_user %}
+<input type="submit" name="req_user" value="{{ u.username }}" style=background:red; id="one_follow">
+{% elif u.username in fol_users %}
+<input type="submit" name="req_user" value="{{ u.username }}" style=background:red;>
+{% else %}
+<input type="submit" name="req_user" value="{{ u.username }}">
+{% endif %}
+</div>
+{% endif %}
+{% endfor %}
+</h4>
+{% csrf_token %}
+</form>
+{% endif %}
+
+
+{% if user.is_authenticated and manage %}
+Welcome {{user}} <br>
+<a href="{% url 'home' %}" >Home</a>
+<br>
+<a href="{% url 'add-item' %}" >Add Item</a>
+<p>
+<a href="{% url 'logout' %}" >Logout</a>
+</p>
+<form id="manage-form" action="">
+<input type="hidden" id="manage-true" value="yes">
+</form>
+{% elif user.is_authenticated and not manage %}
+Welcome {{user}} <br>
+<a href="{% url 'manage' %}" >Manage Blog</a>
+<p>
+<a href="{% url 'logout' %}" >Logout</a>
+</p>
+{% else %}
+<p>
+<a href="{% url 'login' %}" >Login/Register</a>
+</p>
+{% endif %}
+</div>
+
+
+{% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+
+
+{% for error in errors %}
+<p style="color:red">
+{{error}}
+</p>
+{% endfor %}
+<div id="map-canvas" class="col-md-9" style="height: 100%;"></div>
+
+</div>
+
+</body>
+</html>
+
